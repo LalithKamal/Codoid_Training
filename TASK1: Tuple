@@ -1,0 +1,47 @@
+package management;
+import java.util.*;
+
+public class StudentInfoManagement {
+    public static void main(String[] args) {
+        List<Tuple<String, Tuple<Integer, String>>> studentsList = new ArrayList<>();
+        studentsList.add(new Tuple<>("Imman", new Tuple<>(20, "Math")));
+        studentsList.add(new Tuple<>("Krish", new Tuple<>(19, "English")));
+        studentsList.add(new Tuple<>("Vishal", new Tuple<>(21, "Science")));
+        studentsList.add(new Tuple<>("Arun", new Tuple<>(18, "Tamil")));
+        Map<String, Tuple<Integer, String>> studentsDict = new HashMap<>();
+        for (Tuple<String, Tuple<Integer, String>> student : studentsList) {
+            studentsDict.put(student.getFirst(), student.getSecond());
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter student's name: ");
+        String studentName = scanner.nextLine();
+
+        if (studentsDict.containsKey(studentName)) {
+            Tuple<Integer, String> info = studentsDict.get(studentName);
+            System.out.println("Age: " + info.getFirst());
+            System.out.println("Favorite Subject: " + info.getSecond());
+        } else {
+            System.out.println("Student not found.");
+        }
+    }
+}
+class Tuple<A, B> {
+    private final A first;
+    private final B second;
+
+    public Tuple(A first, B second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public A getFirst() {
+        return first;
+    }
+
+    public B getSecond() {
+        return second;
+    }
+}
+
+
